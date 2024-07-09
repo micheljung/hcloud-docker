@@ -33,7 +33,7 @@ jobs:
       - name: Build Docker image
         if: steps.check-branch.outputs.on_main == 'true'
         run: |
-          docker build . --file Dockerfile --build-arg VERSION=${{ steps.latest-release.outputs.version }} -t micheljung/hcloud:${{ steps.latest-release.outputs.version }}
+          docker build . --file Dockerfile --build-arg VERSION=${{ steps.latest-release.outputs.version }} -t micheljung/hcloud:${{ steps.latest-release.outputs.version }} -t micheljung/hcloud:latest
 
       - name: Log in to Docker Hub
         if: steps.check-branch.outputs.on_main == 'true'
@@ -46,3 +46,4 @@ jobs:
         if: steps.check-branch.outputs.on_main == 'true'
         run: |
           docker push micheljung/hcloud:${{ steps.latest-release.outputs.version }}
+          docker push micheljung/hcloud:latest
